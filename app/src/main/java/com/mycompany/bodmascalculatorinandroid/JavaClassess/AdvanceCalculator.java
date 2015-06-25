@@ -84,19 +84,19 @@ public class AdvanceCalculator //this calculator will calculate all the expressi
     }
 
     public boolean validateInput(String input) {
-        if((input.replaceAll("[^(]","" ).length() != input.replaceAll("[^)]", "").length()) || input.split("[(|)]").length == 0) {
+        if((input.replaceAll("[^(]","" ).length() != input.replaceAll("[^)]", "").length()) || input.split("[(|)]").length == 0)
             return false;
-        }
 
 //                [\d|-][(|)]   [\d|)][(|\d]|[^\d|(][)|^\d]
 
             Pattern pattern = Pattern.compile("[\\d][(]|[)][\\d]|[^\\d][)]|[(][^\\d]");
             Matcher matcher = pattern.matcher(input);
-            if (matcher.find()) {
+            if (matcher.find())
                 return false;
-
-//            return false;
-        }
+        pattern = pattern.compile("[^\\d]");
+        matcher = pattern.matcher(input);
+        if (matcher.find())
+            return false;
         return true;
     }
     

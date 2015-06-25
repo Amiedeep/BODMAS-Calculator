@@ -3,6 +3,8 @@ package com.mycompany.bodmascalculatorinandroid.JavaClassess;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Stack;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 public class AdvanceCalculator //this calculator will calculate all the expressions with operator precedence like
@@ -22,6 +24,8 @@ public class AdvanceCalculator //this calculator will calculate all the expressi
     
     public String findPostfix(String inputP)//this will return the postfix expression of given input
     {
+        if(!validateInput(inputP))
+            return "Invalid expression";
         String temp="";
         ArrayList<Character> al=new ArrayList<>();
         al.add('(');
@@ -77,6 +81,23 @@ public class AdvanceCalculator //this calculator will calculate all the expressi
             }    
         }
         return temp;
+    }
+
+    public boolean validateInput(String input) {
+        if((input.replaceAll("[^(]","" ).length() != input.replaceAll("[^)]", "").length()) || input.split("[(|)]").length == 0) {
+            return false;
+        }
+
+//                [\d|-][(|)]   [\d|)][(|\d]|[^\d|(][)|^\d]
+
+            Pattern pattern = Pattern.compile("[\\d][(]|[)][\\d]|[^\\d][)]|[(][^\\d]");
+            Matcher matcher = pattern.matcher(input);
+            if (matcher.find()) {
+                return false;
+
+//            return false;
+        }
+        return true;
     }
     
     

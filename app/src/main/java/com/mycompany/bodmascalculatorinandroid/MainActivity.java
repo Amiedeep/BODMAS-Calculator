@@ -25,6 +25,7 @@ public class MainActivity extends ActionBarActivity {
         textArea = (EditText) findViewById(R.id.edit_text);
         errorMessageText = (TextView) findViewById(R.id.error_message);
         errorMessageText.setVisibility(View.GONE);
+
     }
 
     @Override
@@ -67,6 +68,13 @@ public class MainActivity extends ActionBarActivity {
         text = textArea.getText().toString();
 
         String postfixExpression = advanceCalculator.findPostfix(text);
+
+        if(postfixExpression.equals("Invalid expression")) {
+            errorMessageText.setVisibility(View.VISIBLE);
+            textArea.setText("");
+            return;
+        }
+
         float result = advanceCalculator.evaluatePostfix(postfixExpression);
 //        TODO You can make it like 2+4=6.0*2=12.0..so that further you can take actions..however i don't want it that messy;)
         textArea.setText(""+result);

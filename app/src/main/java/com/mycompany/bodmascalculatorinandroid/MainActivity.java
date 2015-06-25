@@ -14,10 +14,13 @@ import com.mycompany.bodmascalculatorinandroid.JavaClassess.AdvanceCalculator;
 public class MainActivity extends ActionBarActivity {
 
     AdvanceCalculator advanceCalculator;
+    EditText textArea;
+    String text;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        textArea = (EditText) findViewById(R.id.edit_text);
     }
 
     @Override
@@ -47,8 +50,7 @@ public class MainActivity extends ActionBarActivity {
         String buttonText = (String) ((Button)view).getText();
 
 
-        EditText textArea = (EditText) findViewById(R.id.edit_text);
-        String text = textArea.getText().toString();
+        text = textArea.getText().toString();
         text = text+buttonText;
         textArea.setText(text);
 
@@ -57,8 +59,7 @@ public class MainActivity extends ActionBarActivity {
 
     public void evaluateExpression(View view) {
         advanceCalculator = new AdvanceCalculator();
-        EditText textArea = (EditText) findViewById(R.id.edit_text);
-        String text = textArea.getText().toString();
+        text = textArea.getText().toString();
 
         String postfixExpression = advanceCalculator.findPostfix(text);
         float result = advanceCalculator.evaluatePostfix(postfixExpression);
@@ -66,5 +67,11 @@ public class MainActivity extends ActionBarActivity {
         textArea.setText(""+result);
 
     }
+
+    public void clearTextField(View view) {
+        textArea.setText("");
+    }
+
+    
 
 }

@@ -164,6 +164,7 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="70dp"
+            android:onClick="clearTextField"
             android:text="CLR" />
 
         <Button
@@ -171,7 +172,8 @@
             android:layout_height="70dp"
             android:onClick="getTextFromButton"
 
-            android:text=" POW " />
+
+            android:text="^" />
 
         <Button
             android:layout_width="wrap_content"

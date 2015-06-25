@@ -93,10 +93,17 @@ public class AdvanceCalculator //this calculator will calculate all the expressi
             Matcher matcher = pattern.matcher(input);
             if (matcher.find())
                 return false;
-        pattern = pattern.compile("[^\\d]");
+        pattern = pattern.compile("[^\\d|+*^()\\/-]");
         matcher = pattern.matcher(input);
         if (matcher.find())
             return false;
+
+
+        pattern = pattern.compile("[*-+^\\/]{2}");
+        matcher = pattern.matcher(input);
+        if (matcher.find())
+            return false;
+
         return true;
     }
     

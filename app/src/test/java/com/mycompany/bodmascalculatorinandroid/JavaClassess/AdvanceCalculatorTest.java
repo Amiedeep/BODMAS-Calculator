@@ -10,6 +10,23 @@ import static org.junit.Assert.*;
 public class AdvanceCalculatorTest {
 
     @Test
-    public void shouldInvalidateS
+    public void shouldInvalidateStringInput() {
+
+    }
+
+    @Test
+    public void shouldInvalidateUnequalBraces() {
+
+    }
+
+    @Test
+    public void shouldInvalidateIllegalOperatorBracketMatchingExpression() {
+
+    }
+
+    @Test
+    public void shouldCoverAllTheHappyPaths() {
+
+    }
 
 }

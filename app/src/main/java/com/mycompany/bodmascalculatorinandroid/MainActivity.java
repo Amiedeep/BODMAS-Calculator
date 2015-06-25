@@ -7,6 +7,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.mycompany.bodmascalculatorinandroid.JavaClassess.AdvanceCalculator;
 
@@ -16,11 +17,14 @@ public class MainActivity extends ActionBarActivity {
     AdvanceCalculator advanceCalculator;
     EditText textArea;
     String text;
+    TextView errorMessageText;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         textArea = (EditText) findViewById(R.id.edit_text);
+        errorMessageText = (TextView) findViewById(R.id.error_message);
+        errorMessageText.setVisibility(View.GONE);
     }
 
     @Override
@@ -47,6 +51,7 @@ public class MainActivity extends ActionBarActivity {
 
     public void getTextFromButton(View view) {
 
+        errorMessageText.setVisibility(View.GONE);
         String buttonText = (String) ((Button)view).getText();
 
 
@@ -72,6 +77,32 @@ public class MainActivity extends ActionBarActivity {
         textArea.setText("");
     }
 
-    
+    public void findSqrt(View view) {
+        text = textArea.getText().toString();
+        double value = 0;
+        try {
+            value = Double.parseDouble(text);
+            textArea.setText(""+Math.sqrt(value));
+            errorMessageText.setVisibility(View.GONE);
+        }
+        catch (NumberFormatException e) {
+            errorMessageText.setVisibility(View.VISIBLE);
+            textArea.setText("");
+        }
+    }
+
+    public void findLog(View view) {
+        text = textArea.getText().toString();
+        double value = 0;
+        try {
+            value = Double.parseDouble(text);
+            textArea.setText(""+Math.log10(value));
+            errorMessageText.setVisibility(View.GONE);
+        }
+        catch (NumberFormatException e) {
+            errorMessageText.setVisibility(View.VISIBLE);
+            textArea.setText("");
+        }
+    }
 
 }

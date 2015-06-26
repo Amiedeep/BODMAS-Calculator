@@ -18,11 +18,16 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    packagingOptions {
+        exclude 'LICENSE.txt'
+    }
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:22.2.0'
     compile 'com.android.support:support-annotations:22.2.0'
+    testCompile 'com.android.support.test:rules:0.3'
     androidTestCompile 'com.android.support.test:rules:0.3'
 }

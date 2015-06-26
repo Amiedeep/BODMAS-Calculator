@@ -28,11 +28,17 @@ public class MainActivityTest {
     TextView errorText;
     Button equalButton;
 
-    @Test
-    public void testShouldLaunchMainActivityAndCheckItsContent() {
+    @Before
+    public void getUiElements() {
+
         editText = (EditText) main.getActivity().findViewById(R.id.edit_text);
         errorText = (TextView) main.getActivity().findViewById(R.id.error_message);
         equalButton = (Button) main.getActivity().findViewById(R.id.equal_button);
+    }
+
+
+    @Test
+    public void testShouldLaunchMainActivityAndCheckItsContent() {
 
         assertThat(View.VISIBLE, is(editText.getVisibility()));
         assertThat(editText.getText().toString(), is(""));
@@ -45,10 +51,6 @@ public class MainActivityTest {
 
     @Test
     public void itShouldCalculateResultAndShowThem() {
-
-        editText = (EditText) main.getActivity().findViewById(R.id.edit_text);
-        errorText = (TextView) main.getActivity().findViewById(R.id.error_message);
-        equalButton = (Button) main.getActivity().findViewById(R.id.equal_button);
 
         Instrumentation instrumentation = InstrumentationRegistry.getInstrumentation();
         instrumentation.runOnMainSync(new Runnable() {
@@ -66,10 +68,6 @@ public class MainActivityTest {
 
     @Test
     public void erroeMessageShouldBeVisibleAfterAddingInvalidInput() {
-
-        editText = (EditText) main.getActivity().findViewById(R.id.edit_text);
-        errorText = (TextView) main.getActivity().findViewById(R.id.error_message);
-        equalButton = (Button) main.getActivity().findViewById(R.id.equal_button);
 
         Instrumentation instrumentation = InstrumentationRegistry.getInstrumentation();
         instrumentation.runOnMainSync(new Runnable() {

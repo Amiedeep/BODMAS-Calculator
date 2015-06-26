@@ -88,8 +88,10 @@ public class AdvanceCalculator //this calculator will calculate all the expressi
             return false;
 
 //                [\d|-][(|)]   [\d|)][(|\d]|[^\d|(][)|^\d]
+//        [\d][(]|[)][\d]|[^\d][)]|[(][^\d]
 
-            Pattern pattern = Pattern.compile("[\\d][(]|[)][\\d]|[^\\d][)]|[(][^\\d]");
+        String ope = "*\\/+^-";
+            Pattern pattern = Pattern.compile("(\\d\\()|(\\)\\d)|(\\([*\\/+^-])|([*\\/+^-]\\))");
             Matcher matcher = pattern.matcher(input);
             if (matcher.find())
                 return false;

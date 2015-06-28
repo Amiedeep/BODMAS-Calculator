@@ -23,11 +23,13 @@ public class AdvanceCalculatorTest {
 
         assertThat(advanceCalculator.findPostfix("89898vwjgdjyqgyuegyjq7687556"), is("Invalid expression"));
         assertThat(advanceCalculator.findPostfix("vwjgdjyqgyuegyjq"), is("Invalid expression"));
-        assertThat(advanceCalculator.findPostfix(""), is(""));
+        assertThat(advanceCalculator.findPostfix(""), is("Invalid expression"));
         assertThat(advanceCalculator.findPostfix("9++9"), is("Invalid expression"));
         assertThat(advanceCalculator.findPostfix("9+9*(8*7//9)"), is("Invalid expression"));
         assertThat(advanceCalculator.findPostfix("()()()()"), is("Invalid expression"));
         assertThat(advanceCalculator.findPostfix("()(())"), is("Invalid expression"));
+        assertThat(advanceCalculator.findPostfix("*+="), is("Invalid expression"));
+        assertThat(advanceCalculator.findPostfix("*"), is("Invalid expression"));
 
     }
 

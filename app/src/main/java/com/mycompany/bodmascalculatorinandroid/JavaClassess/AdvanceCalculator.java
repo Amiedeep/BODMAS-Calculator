@@ -84,23 +84,27 @@ public class AdvanceCalculator //this calculator will calculate all the expressi
     }
 
     public boolean validateInput(String input) {
-        if((input.replaceAll("[^(]","" ).length() != input.replaceAll("[^)]", "").length()) || input.split("[(|)]").length == 0)
+        if((input.replaceAll("[^(]","" ).length() != input.replaceAll("[^)]", "").length()) || input.split("[^\\d]").length == 0 || input.length() == 0)
             return false;
 
 //                [\d|-][(|)]   [\d|)][(|\d]|[^\d|(][)|^\d]
 //        [\d][(]|[)][\d]|[^\d][)]|[(][^\d]
 
-        String ope = "*\\/+^-";
+//        String ope = "*\\/+^-";
+        //to check input like 9(, )9, *),(*..
             Pattern pattern = Pattern.compile("(\\d\\()|(\\)\\d)|(\\([*\\/+^-])|([*\\/+^-]\\))");
             Matcher matcher = pattern.matcher(input);
             if (matcher.find())
                 return false;
+
+        //
         pattern = pattern.compile("[^\\d|+*^()\\/-]");
         matcher = pattern.matcher(input);
         if (matcher.find())
             return false;
 
 
+        //to check if 2 consecutive operators are there...
         pattern = pattern.compile("[*-+^\\/]{2}");
         matcher = pattern.matcher(input);
         if (matcher.find())
